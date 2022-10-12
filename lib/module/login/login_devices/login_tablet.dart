@@ -5,7 +5,6 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import '../../../routes/app_routes.dart';
 import '../../../shared/assets/images.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/constants/font_sizes.dart';

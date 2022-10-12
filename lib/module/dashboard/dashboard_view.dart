@@ -11,7 +11,7 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logic = Get.find<DashboardLogic>();
+    Get.find<DashboardLogic>();
 
     return ResponsiveBuilder(
       builder: (context,sizingInformation){

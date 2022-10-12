@@ -1,8 +1,8 @@
 class DashboardModel{
-  late final int id;
-  late final String title;
-  late final double price;
-  late final String description;
+  late final int? id;
+  late final String? title;
+  late final double? price;
+  late final String? description;
   late final String image;
 
   DashboardModel({

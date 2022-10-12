@@ -19,4 +19,11 @@ class ConstColors {
   static const Color ETH_BACK_COLOR = Color.fromARGB(50, 99, 116, 195);
   static const Color LTC_BACK_COLOR = Color.fromARGB(50, 48, 224, 161);
   static const Color XRP_BACK_COLOR = Color.fromARGB(50, 99, 143, 254);
+
+  static const colorizeColors = [
+    Colors.purple,
+    Colors.blue,
+    Colors.yellow,
+    Colors.red,
+  ];
 }

@@ -3,14 +3,12 @@ import 'package:get/get.dart';
 
 import '../dashboard_logic.dart';
 
-class DetailsView extends StatelessWidget {
+class DetailsView extends GetView<DashboardLogic> {
 
-  const DetailsView({required this.controller,required this.index,Key? key})
+  const DetailsView({required this.index,Key? key})
       : super(key: key);
 
   final int index;
-
-  final controller ;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +30,7 @@ class DetailsView extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
                 child: Center(
                   child: Text(
-                    controller.post[index].description,
-                    textAlign: TextAlign.justify,
+                    controller.post[index].title.toString(),
                     style: const TextStyle(
                         color: Colors.black,
                         fontSize: 24,
@@ -47,11 +44,11 @@ class DetailsView extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   child: Text(
                     //controller.post[index].price.toString(),
-                    controller.post[index].title,
+                    controller.post[index].description.toString(),
                     style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600),
+                        color: Colors.grey,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300),
                   ),
                 ),
               ),

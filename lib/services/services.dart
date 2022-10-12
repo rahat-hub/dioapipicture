@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 class ApiServices {
   Future<dynamic> postMethod({path,String? name, String? pass}) async {
@@ -10,13 +11,15 @@ class ApiServices {
             },
             options: Options(responseType: ResponseType.json, method: 'POST'))
         .then((response) {
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       return response;
     });
   }
   Future<dynamic> getMethod({url}) async{
     return await Dio().get(url,options: Options(responseType: ResponseType.json,method: 'GET')).then((response){
-      print(response);
+      //print(response);
       return response;
     });
   }
