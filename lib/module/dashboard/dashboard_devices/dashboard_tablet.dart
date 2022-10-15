@@ -1,5 +1,4 @@
 import 'package:dioapipicture/module/dashboard/dashboard_logic.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -12,7 +11,7 @@ class DashboardTabletPagePortrait extends GetView<DashboardLogic> {
 
   @override
   Widget build(BuildContext context) {
-    return Text('hello');
+    return const Text('hello');
   }
 }
 
@@ -23,6 +22,6 @@ class DashboardTabletPageLandscape extends GetView<DashboardLogic> {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Hello');
+    return const Text('Hello');
   }
 }

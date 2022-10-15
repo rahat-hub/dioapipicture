@@ -1,7 +1,6 @@
 import 'package:dioapipicture/module/dashboard/dashboard_logic.dart';
 import 'package:dioapipicture/shared/constants/colors.dart';
 import 'package:dioapipicture/shared/constants/font_sizes.dart';
-import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -105,6 +104,6 @@ class DashboardMobilePageLandscape extends GetView<DashboardLogic> {
 
   @override
   Widget build(BuildContext context) {
-    return Text('hello');
+    return const Text('hello');
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../shared/constants/colors.dart';
 
 abstract class Buttons{
-  static buttons({text,width = double.infinity,height = 60.0,onPressed,value = 0.0,circularValue = 0.0,colorValue, BorderColor = ConstColors.BLUE}){
+  static buttons({text,width = double.infinity,height = 60.0,onPressed,value = 0.0,circularValue = 0.0,colorValue, borderColor = ConstColors.BLUE}){
     return Padding(
       padding: EdgeInsets.all(value),
       child: MaterialButton(
@@ -14,7 +14,7 @@ abstract class Buttons{
         color: colorValue,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color:  BorderColor,
+            color:  borderColor,
           ),
           borderRadius: BorderRadius.circular(circularValue),
         ),

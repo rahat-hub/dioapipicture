@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:dioapipicture/routes/app_routes.dart';
 import 'package:dioapipicture/services/services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,9 @@ class LoginLogic extends GetxController {
       }
     } on DioError
     catch(e){
-      print(e.response);
+      if (kDebugMode) {
+        print(e.response);
+      }
       return Get.snackbar(
         'ERROR',
         'username or password is incorrect',
