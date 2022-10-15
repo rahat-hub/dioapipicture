@@ -23,63 +23,54 @@ class DetailsView extends GetView<DashboardLogic> {
         ),
         ),
         body: Obx(() {
-          return Column(
-            children: [
-              Material(
-                elevation: 5,
-                borderRadius: BorderRadius.circular(10.0),
-                shadowColor: ConstColors.TEXTBLUE,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          controller.post[index].category.toString(),
-                          style: Texts.textStyles(colors: ConstColors.GREY,textSize: FontSizes.SMALL,fontWeight: FontWeight.w200),
-                        ),),
-                      SizedBox(
-                        //height: MediaQuery.of(context).size.height*0.5,
-                        height: 250,
-                        child: Image.network(
-                          controller.post[index].image.toString(),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          controller.post[index].title.toString(),
-                          maxLines: 1,
-                          style: Texts.textStyles(fontWeight: FontWeight.w400,textSize: FontSizes.BIG),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "\$ ${controller.post[index].price.toString()}",
-                          style: Texts.textStyles(textSize: FontSizes.MEDIUM),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Descriptions:\n${controller.post[index].description.toString()}",
-                          textAlign: TextAlign.justify,
-                          style: Texts.textStyles(textSize: FontSizes.MEDIUM,colors: ConstColors.GREY),
-                        ),
-                      ),
-                    ],
+          return Material(
+            elevation: 5,
+            borderRadius: BorderRadius.circular(10.0),
+            shadowColor: ConstColors.TEXTBLUE,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      controller.post[index].category.toString(),
+                      style: Texts.textStyles(colors: ConstColors.GREY,textSize: FontSizes.SMALL,fontWeight: FontWeight.w200),
+                    ),),
+                  SizedBox(
+                    //height: MediaQuery.of(context).size.height*0.5,
+                    height: 250,
+                    child: Image.network(
+                      controller.post[index].image.toString(),
+                    ),
                   ),
-                ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      controller.post[index].title.toString(),
+                      maxLines: 1,
+                      style: Texts.textStyles(fontWeight: FontWeight.w400,textSize: FontSizes.BIG),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "\$ ${controller.post[index].price.toString()}",
+                      style: Texts.textStyles(textSize: FontSizes.MEDIUM),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Descriptions:\n${controller.post[index].description.toString()}",
+                      textAlign: TextAlign.justify,
+                      style: Texts.textStyles(textSize: FontSizes.MEDIUM,colors: ConstColors.GREY),
+                    ),
+                  ),
+                ],
               ),
-              // ListView.builder(
-              //     itemCount: controller.post.length,
-              //     itemBuilder: (context,index){
-              //
-              // })
-            ],
+            ),
           );
 
         }));

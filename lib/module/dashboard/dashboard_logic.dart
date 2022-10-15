@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../helper/LoaderHelperClass.dart';
 import '../../model/model_services.dart';
 import '../../services/services.dart';
 
@@ -9,16 +10,21 @@ class DashboardLogic extends GetxController {
 
 
   var url = 'https://fakestoreapi.com/products';
-  RxBool isLoaded = false.obs;
 
   getPost() async {
-    var response = await ApiServices().getMethod(url: url);
-    if (response.statusCode == 200) {
-      response.data.forEach((element) {
-        post.add(DashboardModel.formJson(element));
-        isLoaded = true.obs;
-      });
+    try{
+      LoaderHelperClass.showLoader();
+      var response = await ApiServices().getMethod(url: url);
+      await Future.delayed(const Duration(seconds: 2));
+      if (response.statusCode == 200) {
+        response.data.forEach((element) {
+          post.add(DashboardModel.formJson(element));
+          LoaderHelperClass.closeLoader();
+        });
+      }
     }
+    catch(e){}
+
   }
 
   // getSamePost({index}) {

@@ -1,5 +1,6 @@
 import 'package:dioapipicture/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.LOGIN,
       getPages: AppPages.pages,
 
-
+      builder: EasyLoading.init(),
     );
   }
 }

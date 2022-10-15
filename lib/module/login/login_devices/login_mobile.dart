@@ -9,6 +9,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import '../../../routes/app_routes.dart';
 import '../../../widgets/buttons.dart';
 import '../../../widgets/text_fields.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -169,11 +170,11 @@ class LoginPageMobilePortrait extends GetView<LoginLogic> {
                       circularValue: 10.0,
                       text: "Sign In",
                       onPressed: () async{
-                        if (controller.formKey.currentState!.validate()) {
-                          controller.formKey.currentState!.save();
-                          await controller.logIn();
-                        }
-                          //Get.offNamed(AppRoutes.DASHBOARD);
+                        // if (controller.formKey.currentState!.validate()) {
+                        //   controller.formKey.currentState!.save();
+                        //   await controller.logIn();
+                        // }
+                          Get.offNamed(AppRoutes.DASHBOARD);
                       }),
                 ),
               ],
