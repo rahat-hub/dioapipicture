@@ -9,15 +9,22 @@ class DashboardLogic extends GetxController {
 
 
   var url = 'https://fakestoreapi.com/products';
+  RxBool isLoaded = false.obs;
 
   getPost() async {
     var response = await ApiServices().getMethod(url: url);
     if (response.statusCode == 200) {
       response.data.forEach((element) {
         post.add(DashboardModel.formJson(element));
+        isLoaded = true.obs;
       });
     }
   }
+
+  // getSamePost({index}) {
+  //   if(post[index].category == ){}
+  // }
+
   @override
   void onInit() {
     getPost();

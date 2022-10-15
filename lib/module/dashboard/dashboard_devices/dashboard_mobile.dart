@@ -1,11 +1,13 @@
 import 'package:dioapipicture/module/dashboard/dashboard_logic.dart';
 import 'package:dioapipicture/shared/constants/colors.dart';
+import 'package:dioapipicture/shared/constants/font_sizes.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:responsive_builder/responsive_builder.dart';
+import '../../../widgets/texts.dart';
 import '../product_description/product_description.dart';
 
 class DashboardMobilePagePortrait extends GetView<DashboardLogic> {
@@ -17,67 +19,80 @@ class DashboardMobilePagePortrait extends GetView<DashboardLogic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.lerp(Colors.white, Colors.blueAccent, 0.3),
-        appBar: AppBar(
-          title: const Center(child: Text('Dio_Text_Api')),
-        ),
-        body: Obx(() {
-          return GridView.builder(
-              itemCount: controller.post.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20, vertical: 10),
-                  child: MaterialButton(
-                    onPressed: (){
-                      Get.to(() => DetailsView(index: index));
-                    },
-                    child: Material(
-                      elevation: 5,
-                      borderRadius: BorderRadius.circular(10.0),
-                      shadowColor: ConstColors.TEXTBLUE,
-                      child: Container(
-                        height: 250,
-                        width: 210,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: SizedBox(
-                                height: 120,
+      backgroundColor: Color.lerp(Colors.white, Colors.blueAccent, 0.3),
+      appBar: AppBar(
+        title: const Center(child: Text('Dio_Text_Api')),
+      ),
+      body: Obx(
+        () => Visibility(
+          visible: controller.isLoaded.value,
+          replacement: const Center(
+            child: CircularProgressIndicator(),
+          ),
+          child: RefreshIndicator(
+            color: Colors.red,
+            backgroundColor: Colors.blue,
+            onRefresh: () async{
+              controller.post.length = 0;
+              return await controller.getPost();
+            },
+            child: GridView.builder(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                itemCount: controller.post.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0, vertical: 10.0),
+                    child: MaterialButton(
+                      onPressed: () {
+                        Get.to(() => DetailsView(index: index));
+                      },
+                      child: Material(
+                        elevation: 5,
+                        borderRadius: BorderRadius.circular(10.0),
+                        shadowColor: ConstColors.TEXTBLUE,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  controller.post[index].category.toString(),
+                                  style: Texts.textStyles(colors: ConstColors.GREY,textSize: FontSizes.SMALL,fontWeight: FontWeight.w200),
+                                ),),
+                              SizedBox(
+                                height: 120.0,
                                 child: Image.network(
-                                  controller.post[index].image,
+                                  controller.post[index].image.toString(),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 5),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Align(alignment: Alignment.center,child: Text(controller.post[index].title.toString(),maxLines: 1,)),
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(0.0,20,5.0,10),
-                                    child: Align(alignment: Alignment.bottomRight,child: Text("\$${controller.post[index].price}")),
+                              Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    controller.post[index].title.toString(),
+                                    maxLines: 1,
+                                    style: Texts.textStyles(),
                                   ),
-                                ],
-                              ),
-                            ),
-                          ],
+                                  ),
+                              Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Text(
+                                      "\$${controller.post[index].price.toString()}")),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              });
-        })
+                  );
+                }),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -93,4 +108,3 @@ class DashboardMobilePageLandscape extends GetView<DashboardLogic> {
     return Text('hello');
   }
 }
-

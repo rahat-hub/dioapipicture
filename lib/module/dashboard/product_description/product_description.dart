@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../shared/constants/colors.dart';
+import '../../../shared/constants/font_sizes.dart';
+import '../../../widgets/texts.dart';
 import '../dashboard_logic.dart';
 
 class DetailsView extends GetView<DashboardLogic> {
@@ -16,44 +19,69 @@ class DetailsView extends GetView<DashboardLogic> {
     return Scaffold(
         backgroundColor: Color.lerp(Colors.white, Colors.blueAccent, 0.3),
         appBar: AppBar(
-          title: const Center(child: Text('Description')),
+          title: Center(child: Text(controller.post[index].title.toString()),
+        ),
         ),
         body: Obx(() {
-          return ListView(
+          return Column(
             children: [
-              SizedBox(
-                width: 400,
-                height: 300,
-                child: Image.network(controller.post[index].image),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                child: Center(
-                  child: Text(
-                    controller.post[index].title.toString(),
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600),
+              Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(10.0),
+                shadowColor: ConstColors.TEXTBLUE,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          controller.post[index].category.toString(),
+                          style: Texts.textStyles(colors: ConstColors.GREY,textSize: FontSizes.SMALL,fontWeight: FontWeight.w200),
+                        ),),
+                      SizedBox(
+                        //height: MediaQuery.of(context).size.height*0.5,
+                        height: 250,
+                        child: Image.network(
+                          controller.post[index].image.toString(),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          controller.post[index].title.toString(),
+                          maxLines: 1,
+                          style: Texts.textStyles(fontWeight: FontWeight.w400,textSize: FontSizes.BIG),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "\$ ${controller.post[index].price.toString()}",
+                          style: Texts.textStyles(textSize: FontSizes.MEDIUM),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Descriptions:\n${controller.post[index].description.toString()}",
+                          textAlign: TextAlign.justify,
+                          style: Texts.textStyles(textSize: FontSizes.MEDIUM,colors: ConstColors.GREY),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 20.0),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                    //controller.post[index].price.toString(),
-                    controller.post[index].description.toString(),
-                    style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w300),
-                  ),
-                ),
-              ),
+              // ListView.builder(
+              //     itemCount: controller.post.length,
+              //     itemBuilder: (context,index){
+              //
+              // })
             ],
           );
+
         }));
   }
 }

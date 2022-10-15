@@ -173,6 +173,7 @@ class LoginPageMobilePortrait extends GetView<LoginLogic> {
                           controller.formKey.currentState!.save();
                           await controller.logIn();
                         }
+                          //Get.offNamed(AppRoutes.DASHBOARD);
                       }),
                 ),
               ],
@@ -197,12 +198,23 @@ class LoginPageMobileLandscape extends GetView<LoginLogic> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Center(
-          child: Text(
-            'F10 Solutions',
-            style: Texts.textStyles(
-                colors: ConstColors.TEXTCOLORS,
-                textSize: FontSizes.BIG,
-                fontWeight: FontWeight.w400),
+          child: AnimatedTextKit(
+            animatedTexts: [
+              ColorizeAnimatedText('F10 Solutions',
+                textStyle: Texts.textStyles(textSize: FontSizes.EXTRALARGE,fontWeight: FontWeight.w700), colors: ConstColors.colorizeColors,
+              ),
+              ColorizeAnimatedText('Mobile team',
+                textStyle: Texts.textStyles(textSize: FontSizes.EXTRALARGE,fontWeight: FontWeight.w700), colors: ConstColors.colorizeColors,
+              ),
+              ColorizeAnimatedText('Web team',
+                textStyle: Texts.textStyles(textSize: FontSizes.EXTRALARGE,fontWeight: FontWeight.w700), colors: ConstColors.colorizeColors,
+              ),
+            ],
+            repeatForever: true,
+            //totalRepeatCount: 50,
+            pause: const Duration(milliseconds: 10),
+            displayFullTextOnTap: true,
+            stopPauseOnTap: true,
           ),
         ),
       ),
@@ -214,9 +226,42 @@ class LoginPageMobileLandscape extends GetView<LoginLogic> {
             child: Align(
               alignment: Alignment.center,
               child: Image.asset(
-                Images.loginLogo,
+                Images.f10Solutions,
                 width: 200,
               ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10.0,20.0,10.0,20.0),
+            child: AnimatedTextKit(
+              repeatForever: true,
+              animatedTexts: [
+                TyperAnimatedText('We develop Ideas Into Software',
+                    textStyle: Texts.textStyles(
+                        colors: ConstColors.TEXTCOLORS,
+                        fontWeight: FontWeight.w400,
+                        textSize: FontSizes.BIG)),
+                TyperAnimatedText('Awesome Software Solutions for Your Business',
+                    textStyle: Texts.textStyles(
+                        colors: ConstColors.TEXTCOLORS,
+                        fontWeight: FontWeight.w300,
+                        textSize: FontSizes.BIG)),
+                TyperAnimatedText('F10_Solutions Mobile Team',
+                    textStyle: Texts.textStyles(
+                        colors: ConstColors.TEXTCOLORS,
+                        fontWeight: FontWeight.w400,
+                        textSize: FontSizes.BIG)),
+                TyperAnimatedText('F10_Solutions Web Team',
+                    textStyle: Texts.textStyles(
+                        colors: ConstColors.TEXTCOLORS,
+                        fontWeight: FontWeight.w400,
+                        textSize: FontSizes.BIG)),
+              ],
+              onTap: () {
+                if (kDebugMode) {
+                  print("Tap Event");
+                }
+              },
             ),
           ),
           FormBuilder(
@@ -298,13 +343,10 @@ class LoginPageMobileLandscape extends GetView<LoginLogic> {
                       onPressed: () async{
                         if (controller.formKey.currentState!.validate()) {
                           controller.formKey.currentState!.save();
-                          //print(controller.userFieldKey.currentState!.value);
                           await controller.logIn();
                         }
                       }),
                 ),
-
-                Buttons.textButton()
               ],
             ),
           ),

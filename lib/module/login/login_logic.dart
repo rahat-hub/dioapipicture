@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:dioapipicture/routes/app_routes.dart';
 import 'package:dioapipicture/services/services.dart';
 import 'package:flutter/material.dart';
@@ -17,46 +18,43 @@ class LoginLogic extends GetxController {
   ApiServices? apiServices = ApiServices();
 
   logIn() async {
-    var response = await apiServices!.postMethod(
-        path: 'https://fakestoreapi.com/auth/login',
-    name: userFieldKey.currentState!.value,
-      pass: passFieldKey.currentState!.value,
-    );
     try{
+      var response = await apiServices!.postMethod(
+        path: 'https://fakestoreapi.com/auth/login',
+        name: userFieldKey.currentState!.value,
+        pass: passFieldKey.currentState!.value,
+      );
       if (response.statusCode == 200) {
         Get.offNamed(AppRoutes.DASHBOARD);
       }
-      else{
-        return response;
-      }
-    }
+    } on DioError
     catch(e){
+      print(e.response);
       return Get.snackbar(
-        'Notification',
-        'No notifications',
+        'ERROR',
+        'username or password is incorrect',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: ConstColors.TRANSPARENT,
-        colorText: ConstColors.GREY,
+        colorText: ConstColors.TEXTCOLORS,
         margin: const EdgeInsets.all(20),
         icon: const Icon(
-          Icons.thumb_up,
-          color: ConstColors.BLUE,
+          Icons.error_outline_outlined,
+          color: Colors.red,
+          size: 30,
         ),
         shouldIconPulse: false,
       );
     }
-
   }
 
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
   }
 
   @override
   void onClose() {
-    // TODO: implement onClose
+
     super.onClose();
   }
 }
